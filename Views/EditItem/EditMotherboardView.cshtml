@@ -1,0 +1,54 @@
+﻿@model Motherboard
+@{
+    ViewData["Title"] = "EditMotherboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Edit Motherboard</h1>
+
+<p>Edit "@Html.Raw(Model.Name)" With ID: @Html.Raw(Model.ID)</p>
+<hr />
+<div class="row">
+    <div>
+        <form asp-action="EditMotherboard">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="col-sm-4 m-3">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" required />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="col-sm-4 m-3">
+                <label asp-for="Stock" class="control-label"></label>
+                <input asp-for="Stock" class="form-control" required />
+                <span asp-validation-for="Stock" class="text-danger"></span>
+            </div>
+            <div class="col-sm-4 m-3">
+                <label asp-for="Price" class="control-label">Price (£)</label>
+                <input asp-for="Price" class="form-control" required />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="col-sm-4 m-3">
+                <label asp-for="Description" class="control-label">Description</label>
+                <textarea asp-for="Description" class="form-control" rows="5"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="col-sm-4 m-3">
+                <label asp-for="Socket" class="control-label">Socket</label>
+                <input asp-for="Socket" class="form-control" />
+                <span asp-validation-for="Socket" class="text-danger"></span>
+            </div>
+            <div class="col-sm-4 m-3">
+                <label asp-for="FormFactor" class="control-label">Form Factor</label>
+                <input asp-for="FormFactor" class="form-control" />
+                <span asp-validation-for="FormFactor" class="text-danger"></span>
+            </div>
+            <div class="col-sm-4 m-3">
+                <input type="submit" value="Save Changes" class="btn btn-primary"
+                       asp-controller="EditItem" asp-action="EditMotherboard"
+                       asp-route-ID="@Model.ID" asp-route-Name="Name" asp-route-Type="Type"
+                       asp-route-Stock="Stock" asp-route-Price="Price" asp-route-Description="Description"
+                       asp-route-Socket="Socket" asp-route-FormFactor="FormFactor" />
+            </div>
+        </form>
+    </div>
+</div>

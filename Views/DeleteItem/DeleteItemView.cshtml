@@ -1,0 +1,348 @@
+﻿@using HardwaveStockManagement.ViewModels
+@model DeleteItemViewModel
+@{
+    ViewData["Title"] = "DeleteItem";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="text-center">
+    <h1>Delete Item</h1>
+
+    <p>Are you sure you want to delete this item?</p>
+    <div>
+        <table class="table" id="table">
+            <tbody>
+                @{
+                    if (Model.Case != null) 
+                    {
+                        <tr>
+                            <th scope="row">ID</th>
+                            <td>@Html.DisplayFor(model => model.Case!.ID)</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Name</th>
+                            <td>@Html.DisplayFor(model => model.Case!.Name)</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Type</th>
+                            <td>@Html.DisplayFor(model => model.Case!.Type)</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Stock</th>
+                            <td>@Html.DisplayFor(model => model.Case!.Stock)</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Price</th>
+                            <td>£@Html.DisplayFor(model => model.Case!.Price)</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Description</th>
+                            <td>@Html.DisplayFor(model => model.Case!.Description)</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Form Factor</th>
+                            <td>@Html.DisplayFor(model => model.Case!.FormFactor)</td>
+                        </tr>
+                    }
+                    if (Model.Cpu != null) 
+                    {
+                        <tr>
+                            <th scope="row">ID</th>
+                            <td>@Html.DisplayFor(model => model.Cpu!.ID)</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Name</th>
+                            <td>@Html.DisplayFor(model => model.Cpu!.Name)</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Type</th>
+                            <td>@Html.DisplayFor(model => model.Cpu!.Type)</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Stock</th>
+                            <td>@Html.DisplayFor(model => model.Cpu!.Stock)</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Price</th>
+                            <td>£@Html.DisplayFor(model => model.Cpu!.Price)</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Description</th>
+                            <td>@Html.DisplayFor(model => model.Cpu!.Description)</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Cores</th>
+                            <td>@Html.DisplayFor(model => model.Cpu!.Cores)</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Clock Speed</th>
+                            <td>@Html.DisplayFor(model => model.Cpu!.ClockSpeed) GHz</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Socket</th>
+                            <td>@Html.DisplayFor(model => model.Cpu!.Socket)</td>
+                        </tr>
+                    }
+                    if (Model.GraphicsCard != null)
+                    {
+                        <tr>
+                            <th scope="row">ID</th>
+                            <td>@Html.DisplayFor(model => model.GraphicsCard!.ID)</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Name</th>
+                            <td>@Html.DisplayFor(model => model.GraphicsCard!.Name)</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Type</th>
+                            <td>@Html.DisplayFor(model => model.GraphicsCard!.Type)</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Stock</th>
+                            <td>@Html.DisplayFor(model => model.GraphicsCard!.Stock)</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Price</th>
+                            <td>£@Html.DisplayFor(model => model.GraphicsCard!.Price)</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Description</th>
+                            <td>@Html.DisplayFor(model => model.Cpu!.Description)</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">VRAM</th>
+                            <td>@Html.DisplayFor(model => model.GraphicsCard!.VRAM) GB</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Cuda Cores</th>
+                            <td>@Html.DisplayFor(model => model.GraphicsCard!.CudaCores)</td>
+                        </tr>
+                    }
+                    if (Model.Laptop != null)
+                    {
+                        <tr>
+                            <th scope="row">ID</th>
+                            <td>@Html.DisplayFor(model => model.Laptop!.ID)</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Name</th>
+                            <td>@Html.DisplayFor(model => model.Laptop!.Name)</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Type</th>
+                            <td>@Html.DisplayFor(model => model.Laptop!.Type)</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Stock</th>
+                            <td>@Html.DisplayFor(model => model.Laptop!.Stock)</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Price</th>
+                            <td>£@Html.DisplayFor(model => model.Laptop!.Price)</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Description</th>
+                            <td>@Html.DisplayFor(model => model.Cpu!.Description)</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Screen Size</th>
+                            <td>@Html.DisplayFor(model => model.Laptop!.ScreenSize) Inches</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">RAM</th>
+                            <td>@Html.DisplayFor(model => model.Laptop!.RAM) GB</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Storage</th>
+                            <td>@Html.DisplayFor(model => model.Laptop!.Storage) GB</td>
+                        </tr>
+                    }
+                    if (Model.Memory != null) 
+                    {
+                        <tr>
+                            <th scope="row">ID</th>
+                            <td>@Html.DisplayFor(model => model.Memory!.ID)</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Name</th>
+                            <td>@Html.DisplayFor(model => model.Memory!.Name)</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Type</th>
+                            <td>@Html.DisplayFor(model => model.Memory!.Type)</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Stock</th>
+                            <td>@Html.DisplayFor(model => model.Memory!.Stock)</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Price</th>
+                            <td>£@Html.DisplayFor(model => model.Memory!.Price)</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Description</th>
+                            <td>@Html.DisplayFor(model => model.Memory!.Description)</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Memory Type</th>
+                            <td>@Html.DisplayFor(model => model.Memory!.MemoryType)</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Memory Size</th>
+                            <td>@Html.DisplayFor(model => model.Memory!.MemorySize)</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Memory Speed</th>
+                            <td>@Html.DisplayFor(model => model.Memory!.MemorySpeed) MT/s</td>
+                        </tr>
+                    }
+                    if (Model.Monitor != null) 
+                    {
+                        <tr>
+                            <th scope="row">ID</th>
+                            <td>@Html.DisplayFor(model => model.Monitor!.ID)</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Name</th>
+                            <td>@Html.DisplayFor(model => model.Monitor!.Name)</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Type</th>
+                            <td>@Html.DisplayFor(model => model.Monitor!.Type)</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Stock</th>
+                            <td>@Html.DisplayFor(model => model.Monitor!.Stock)</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Price</th>
+                            <td>£@Html.DisplayFor(model => model.Monitor!.Price)</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Description</th>
+                            <td>@Html.DisplayFor(model => model.Monitor!.Description)</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Screen Size</th>
+                            <td>@Html.DisplayFor(model => model.Monitor!.ScreenSize) inches</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Refresh Rate</th>
+                            <td>@Html.DisplayFor(model => model.Monitor!.RefreshRate) Hz</td>
+                        </tr>
+                    }
+                    if (Model.Motherboard != null) 
+                    {
+                        <tr>
+                            <th scope="row">ID</th>
+                            <td>@Html.DisplayFor(model => model.Motherboard!.ID)</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Name</th>
+                            <td>@Html.DisplayFor(model => model.Motherboard!.Name)</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Type</th>
+                            <td>@Html.DisplayFor(model => model.Motherboard!.Type)</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Stock</th>
+                            <td>@Html.DisplayFor(model => model.Motherboard!.Stock)</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Price</th>
+                            <td>£@Html.DisplayFor(model => model.Motherboard!.Price)</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Description</th>
+                            <td>@Html.DisplayFor(model => model.Motherboard!.Description)</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Socket</th>
+                            <td>@Html.DisplayFor(model => model.Motherboard!.Socket)</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Form Factor</th>
+                            <td>@Html.DisplayFor(model => model.Motherboard!.FormFactor)</td>
+                        </tr>
+                    }
+                    if (Model.Storage != null) 
+                    {
+                        <tr>
+                            <th scope="row">ID</th>
+                            <td>@Html.DisplayFor(model => model.Storage!.ID)</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Name</th>
+                            <td>@Html.DisplayFor(model => model.Storage!.Name)</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Type</th>
+                            <td>@Html.DisplayFor(model => model.Storage!.Type)</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Stock</th>
+                            <td>@Html.DisplayFor(model => model.Storage!.Stock)</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Price</th>
+                            <td>£@Html.DisplayFor(model => model.Storage!.Price)</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Description</th>
+                            <td>@Html.DisplayFor(model => model.Storage!.Description)</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Storage Type</th>
+                            <td>@Html.DisplayFor(model => model.Storage!.StorageType)</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Storage Size</th>
+                            <td>@Html.DisplayFor(model => model.Storage!.StorageSize) GB</td>
+                        </tr>
+                    }
+                }
+
+            </tbody>
+        </table>
+
+        <div>
+            @{
+                if (Model.Case != null)
+                {
+                    <a class="btn btn-danger m-3" asp-controller="DeleteItem" asp-action="DeleteItem" asp-route-itemId="@Model.Case.ID">Yes, Delete</a>
+                }
+                if (Model.Cpu != null)
+                {
+                    <a class="btn btn-danger m-3" asp-controller="DeleteItem" asp-action="DeleteItem" asp-route-itemId="@Model.Cpu.ID">Yes, Delete</a>
+                }
+                if (Model.GraphicsCard != null)
+                {
+                    <a class="btn btn-danger m-3" asp-controller="DeleteItem" asp-action="DeleteItem" asp-route-itemId="@Model.GraphicsCard.ID">Yes, Delete</a>
+                }
+                if (Model.Laptop != null)
+                {
+                    <a class="btn btn-danger m-3" asp-controller="DeleteItem" asp-action="DeleteItem" asp-route-itemId="@Model.Laptop.ID">Yes, Delete</a>
+                }
+                if (Model.Memory != null)
+                {
+                    <a class="btn btn-danger m-3" asp-controller="DeleteItem" asp-action="DeleteItem" asp-route-itemId="@Model.Memory.ID">Yes, Delete</a>
+                }
+                if (Model.Monitor != null)
+                {
+                    <a class="btn btn-danger m-3" asp-controller="DeleteItem" asp-action="DeleteItem" asp-route-itemId="@Model.Monitor.ID">Yes, Delete</a>
+                }
+                if (Model.Motherboard != null)
+                {
+                    <a class="btn btn-danger m-3" asp-controller="DeleteItem" asp-action="DeleteItem" asp-route-itemId="@Model.Motherboard.ID">Yes, Delete</a>
+                }
+                if (Model.Storage != null)
+                {
+                    <a class="btn btn-danger m-3" asp-controller="DeleteItem" asp-action="DeleteItem" asp-route-itemId="@Model.Storage.ID">Yes, Delete</a>
+                }
+            }
+            <a class="btn btn-success m-3" asp-controller="Home" asp-action="Index">No, Go Back</a>
+
+        </div>
+
+    </div>
+</div>

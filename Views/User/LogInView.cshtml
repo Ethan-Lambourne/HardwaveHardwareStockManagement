@@ -1,0 +1,55 @@
+﻿@model HardwaveStockManagement.ViewModels.LogInViewModel
+@{
+	ViewData["Title"] = "Login";
+	Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Hardwave Hardware</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/HardwaveStockManagement.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <div class="container">
+        <main role="main" class="pb-3 w-25 mx-auto" style="margin-top: 10rem">
+			<div class="text-center">
+				<h1>Log In</h1>
+				<p>Enter your account details to log in.</p>
+				<hr>
+				@{
+					if (Model.FailedLogin) 
+					{
+						<div class="alert alert-danger">
+							Username or password is incorrect.
+						</div>
+					}
+				}
+				<form asp-action="LogIn">
+					<div class="form-floating pb-2">
+						<input asp-for="Username" class="form-control" id="username" placeholder="Username" required />
+						<label for="username">Username</label>
+					</div>
+					<div class="form-floating pb-2">
+						<input asp-for="Password" type="password" class="form-control" id="password" placeholder="Password" required />
+						<label for="password">Password</label>
+					</div>
+					<input type="submit" value="Log in" class="btn btn-lg btn-primary w-100"
+						   asp-controller="User" asp-action="LogIn"
+						   asp-route-Username="Username" asp-route-Password="Password" />
+				</form>
+			</div>
+        </main>
+    </div>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+</body>
+</html>
+
+
+

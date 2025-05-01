@@ -1,0 +1,54 @@
+﻿@model Storage
+@{
+    ViewData["Title"] = "EditStorage";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Edit Storage</h1>
+
+<p>Edit "@Html.Raw(Model.Name)" With ID: @Html.Raw(Model.ID)</p>
+<hr />
+<div class="row">
+    <div>
+        <form asp-action="EditStorage">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="col-sm-4 m-3">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" required />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="col-sm-4 m-3">
+                <label asp-for="Stock" class="control-label"></label>
+                <input asp-for="Stock" class="form-control" required />
+                <span asp-validation-for="Stock" class="text-danger"></span>
+            </div>
+            <div class="col-sm-4 m-3">
+                <label asp-for="Price" class="control-label">Price (£)</label>
+                <input asp-for="Price" class="form-control" required />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="col-sm-4 m-3">
+                <label asp-for="Description" class="control-label">Description</label>
+                <textarea asp-for="Description" class="form-control" rows="5"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="col-sm-4 m-3">
+                <label asp-for="StorageType" class="control-label">Storage Type</label>
+                <input asp-for="StorageType" class="form-control" />
+                <span asp-validation-for="StorageType" class="text-danger"></span>
+            </div>
+            <div class="col-sm-4 m-3">
+                <label asp-for="StorageSize" class="control-label">Storage Size (GB)</label>
+                <input asp-for="StorageSize" class="form-control" />
+                <span asp-validation-for="StorageSize" class="text-danger"></span>
+            </div>
+            <div class="col-sm-4 m-3">
+                <input type="submit" value="Save Changes" class="btn btn-primary"
+                       asp-controller="EditItem" asp-action="EditStorage"
+                       asp-route-ID="@Model.ID" asp-route-Name="Name" asp-route-Type="Type"
+                       asp-route-Stock="Stock" asp-route-Price="Price" asp-route-Description="Description"
+                       asp-route-StorageType="StorageType" asp-route-StorageSize="StorageSize" />
+            </div>
+        </form>
+    </div>
+</div>

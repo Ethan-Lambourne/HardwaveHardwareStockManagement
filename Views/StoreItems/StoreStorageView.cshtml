@@ -1,0 +1,56 @@
+﻿@model Storage
+@{
+    ViewData["Title"] = "Storage";
+    Layout = "~/Views/Shared/_CustomerLayout.cshtml";
+}
+
+<h1>@Html.Raw(Model.Name)</h1>
+<div>
+    <div>
+        <table class="table" id="table">
+            <tbody>
+                <tr>
+                    <th scope="row">ID</th>
+                    <td>@Html.DisplayFor(model => model.ID)</td>
+                </tr>
+                <tr>
+                    <th scope="row">Name</th>
+                    <td>@Html.DisplayFor(model => model.Name)</td>
+                </tr>
+                <tr>
+                    <th scope="row">Type</th>
+                    <td>@Html.DisplayFor(model => model.Type)</td>
+                </tr>
+                <tr>
+                    <th scope="row">Stock</th>
+                    <td>@Html.DisplayFor(model => model.Stock)</td>
+                </tr>
+                <tr>
+                    <th scope="row">Price</th>
+                    <td>£@Html.DisplayFor(model => model.Price)</td>
+                </tr>
+                <tr>
+                    <th scope="row">Description</th>
+                    <td>@Html.DisplayFor(model => model.Description)</td>
+                </tr>
+                <tr>
+                    <th scope="row">Storage Type</th>
+                    <td>@Html.DisplayFor(model => model.StorageType)</td>
+                </tr>
+                <tr>
+                    <th scope="row">Storage Size</th>
+                    <td>@Html.DisplayFor(model => model.StorageSize) GB</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="w-25">
+            <a class="btn btn-danger mb-4" asp-action="StoreView" asp-controller="Store">Back</a>
+            <form asp-action="AddItemToOrder">
+                <label class="form-label" for="amountRange">Amount: <span id="amountText">0</span></label>
+                <input class="form-range" type="range" id="amountRange" asp-for="@Model.OrderAmount" min="0" max="@Model.Stock" value="0" onmousemove="AdjustSliderValue()" />
+                <input class="btn btn-success" id="submitButton" asp-action="AddItemToOrder" asp-controller="Order" type="submit" value="Add item/s to order"
+                       asp-route-itemId="@Model.ID" asp-route-orderAmount="@Model.OrderAmount" />
+            </form>
+        </div>
+    </div>
+</div>

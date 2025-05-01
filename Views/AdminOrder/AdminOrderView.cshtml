@@ -1,0 +1,38 @@
+﻿
+@model HardwaveStockManagement.ViewModels.AdminOrdersViewModel
+@{
+	ViewData["Title"] = "Orders";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Current Orders</h1>
+
+<div class="text-center">
+	@{
+		foreach (var order in Model.Orders) {
+			<table class="table" id="table">
+				<thead>
+					<tr>
+						<th>Order ID</th>
+						<th>Customer ID</th>
+						<th>Items</th>
+						<th>Amounts</th>
+						<th><a class="btn btn-success" asp-action="ResolveOrder" asp-controller="AdminOrder" asp-route-orderId="@order.OrderID">Resolve</a></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th scope="row">@Html.Raw(order.OrderID)</th>
+						<th>@Html.Raw(order.UserID)</th>
+						@for (int i = 0; i < order.OrderItems.Length; i++) {
+							<td>@Html.Raw(order.OrderItems[i])</td>
+							<td>@Html.Raw(order.OrderAmounts[i])</td>
+							<td></td>
+						}
+
+					</tr>
+				</tbody>
+			</table>
+		}
+	}
+</div>

@@ -1,0 +1,135 @@
+﻿@using HardwaveStockManagement.ViewModels
+@model HomeViewModel
+@{
+    ViewData["Title"] = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="text-center">
+    @{
+        if (Model.itemRecentlyAdded)
+        {
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                Item Added
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        }
+        if (Model.itemRecentlyEdited)
+        {
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                Item Edited
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        }
+        if (Model.itemRecentlyDeleted)
+        {
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                Item Deleted
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        }
+        if (Model.userRecentlyCreated) 
+        {
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                User Created
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        }
+        if (Model.userRecentlyDeleted) 
+        {
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                User Deleted
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        }
+    }
+    <h1 class="display-4">Inventory</h1>
+    <p>Search through the store inventory and select items.</p>
+
+    <div class="d-flex justify-content-center">
+        <form asp-action="SearchItems" class="d-flex">
+            <input asp-for="SearchInput" class="form-control me-2" style="width: 22rem" type="search" placeholder="Search" aria-label="Search">
+            <input asp-controller="Home" asp-action="SearchItems" class="btn btn-primary" value="Search" type="submit" asp-route-input="SearchInput" />
+        </form>
+    </div>
+
+    <table class="table" id="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Item Type</th>
+                <th>Stock</th>
+                <th>Price</th>
+                <th><a class="btn btn-success" asp-action="AddItemView" asp-controller="AddItem">Add New Item</a></th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                List<Items> displayedItems = new();
+                if (Model.SearchOutput!.Count == 0 || Model.SearchOutput == null)
+                {
+                    displayedItems.AddRange(Model.CaseList);
+                    displayedItems.AddRange(Model.CPUList);
+                    displayedItems.AddRange(Model.GraphicsCardList);
+                    displayedItems.AddRange(Model.LaptopList);
+                    displayedItems.AddRange(Model.MemoryList);
+                    displayedItems.AddRange(Model.MonitorList);
+                    displayedItems.AddRange(Model.MotherboardList);
+                    displayedItems.AddRange(Model.StorageList);
+                    displayedItems.OrderBy(item => item.ID).ToList();
+                }
+                else 
+                {
+                    displayedItems = Model.SearchOutput!;
+                }
+                foreach (var item in displayedItems)
+                {
+                    <tr>
+                        <th scope="row">@Html.Raw(item.ID)</th>
+                        <td>@Html.Raw(item.Name)</td>
+                        <td>@Html.Raw(item.Type)</td>
+                        <td>@Html.Raw(item.Stock)</td>
+                        <td>£@string.Format("{0:#,##0.##}", item.Price)</td>
+                        @{
+                            if (item.Type == "case")
+                            {
+                                <td><a class="btn btn-info" asp-action="CaseView" asp-controller="Items" asp-route-caseId="@item.ID">Info</a></td>
+                            }
+                            if (item.Type == "cpu")
+                            {
+                                <td><a class="btn btn-info" asp-action="CPUView" asp-controller="Items" asp-route-cpuId="@item.ID">Info</a></td>
+                            }
+                            if (item.Type == "graphics card")
+                            {
+                                <td><a class="btn btn-info" asp-action="GraphicsCardView" asp-controller="Items" asp-route-graphicsCardId="@item.ID">Info</a></td>
+                            }
+                            if (item.Type == "laptop")
+                            {
+                                <td><a class="btn btn-info" asp-action="LaptopView" asp-controller="Items" asp-route-laptopId="@item.ID">Info</a></td>
+                            }
+                            if (item.Type == "memory")
+                            {
+                                <td><a class="btn btn-info" asp-action="MemoryView" asp-controller="Items" asp-route-memoryId="@item.ID">Info</a></td>
+                            }
+                            if (item.Type == "monitor")
+                            {
+                                <td><a class="btn btn-info" asp-action="MonitorView" asp-controller="Items" asp-route-monitorId="@item.ID">Info</a></td>
+                            }
+                            if (item.Type == "motherboard")
+                            {
+                                <td><a class="btn btn-info" asp-action="MotherboardView" asp-controller="Items" asp-route-motherboardId="@item.ID">Info</a></td>
+                            }
+                            if (item.Type == "storage")
+                            {
+                                <td><a class="btn btn-info" asp-action="StorageView" asp-controller="Items" asp-route-storageId="@item.ID">Info</a></td>
+                            }
+                        }
+                    </tr>
+                }
+            }
+        </tbody>
+
+    </table>
+
+</div>

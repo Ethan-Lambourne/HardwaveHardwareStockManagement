@@ -1,0 +1,175 @@
+﻿@model HardwaveStockManagement.ViewModels.AddItemViewModel
+@{
+    ViewData["Title"] = "AddItem";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Add Item</h1>
+
+<p>Add an Item To The Inventory</p>
+<hr />
+<div class="row">
+    <div>
+        <form asp-action="AddItem">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="col-sm-4 m-3">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" required />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="col-sm-4 m-3">
+                <label asp-for="Type" class="control-label"></label>
+                <select asp-for="Type" class="form-select" id="selectType" onchange="changeAddItemForm()">
+                    <option value="">Select Type...</option>
+                    <option value="case">Case</option>
+                    <option value="cpu">CPU</option>
+                    <option value="graphics card">Graphics Card</option>
+                    <option value="laptop">Laptop</option>
+                    <option value="memory">Memory</option>
+                    <option value="monitor">Monitor</option>
+                    <option value="motherboard">Motherboard</option>
+                    <option value="storage">Storage</option>
+                </select>
+            </div>
+            <div class="col-sm-4 m-3">
+                <label asp-for="Stock" class="control-label"></label>
+                <input asp-for="Stock" class="form-control" required />
+                <span asp-validation-for="Stock" class="text-danger"></span>
+            </div>
+            <div class="col-sm-4 m-3">
+                <label asp-for="Price" class="control-label">Price (£)</label>
+                <input asp-for="Price" class="form-control" required />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="col-sm-4 m-3">
+                <label asp-for="Description" class="control-label">Description</label>
+                <textarea asp-for="Description" class="form-control" rows="5"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="col-sm-4 m-3 d-none" id="screenSizeInput">
+                <label asp-for="ScreenSize" class="control-label">Screen Size (Inches)</label>
+                <input asp-for="ScreenSize" class="form-control" />
+                <span asp-validation-for="ScreenSize" class="text-danger"></span>
+            </div>
+            <div class="col-sm-4 m-3 d-none" id="ramInput">
+                <label asp-for="RAM" class="control-label">RAM (GB)</label>
+                <input asp-for="RAM" class="form-control" />
+                <span asp-validation-for="RAM" class="text-danger"></span>
+            </div>
+            <div class="col-sm-4 m-3 d-none" id="storageInput">
+                <label asp-for="Storage" class="control-label">Storage (GB)</label>
+                <input asp-for="Storage" class="form-control" />
+                <span asp-validation-for="Storage" class="text-danger"></span>
+            </div>
+            <div class="col-sm-4 m-3 d-none" id="vramInput">
+                <label asp-for="VRAM" class="control-label">VRAM (GB)</label>
+                <input asp-for="VRAM" class="form-control" />
+                <span asp-validation-for="VRAM" class="text-danger"></span>
+            </div>
+            <div class="col-sm-4 m-3 d-none" id="cudaCoreInput">
+                <label asp-for="CudaCores" class="control-label">Cuda Cores</label>
+                <input asp-for="CudaCores" class="form-control" />
+                <span asp-validation-for="CudaCores" class="text-danger"></span>
+            </div>
+            <div class="col-sm-4 m-3 d-none" id="formFactorInput">
+                <label asp-for="FormFactor" class="control-label">Form Factor</label>
+                <input asp-for="FormFactor" class="form-control" />
+                <span asp-validation-for="FormFactor" class="text-danger"></span>
+            </div>
+            <div class="col-sm-4 m-3 d-none" id="coresInput">
+                <label asp-for="Cores" class="control-label">Cores</label>
+                <input asp-for="Cores" class="form-control" />
+                <span asp-validation-for="Cores" class="text-danger"></span>
+            </div>
+            <div class="col-sm-4 m-3 d-none" id="clockSpeedInput">
+                <label asp-for="ClockSpeed" class="control-label">Clock Speed (GHz)</label>
+                <input asp-for="ClockSpeed" class="form-control" />
+                <span asp-validation-for="ClockSpeed" class="text-danger"></span>
+            </div>
+            <div class="col-sm-4 m-3 d-none" id="socketInput">
+                <label asp-for="Socket" class="control-label">Socket</label>
+                <input asp-for="Socket" class="form-control" />
+                <span asp-validation-for="Socket" class="text-danger"></span>
+            </div>
+            <div class="col-sm-4 m-3 d-none" id="memoryTypeInput">
+                <label asp-for="MemoryType" class="control-label">Memory Type</label>
+                <input asp-for="MemoryType" class="form-control" />
+                <span asp-validation-for="MemoryType" class="text-danger"></span>
+            </div>
+            <div class="col-sm-4 m-3 d-none" id="memorySizeInput">
+                <label asp-for="MemorySize" class="control-label">Memory Size (GB)</label>
+                <input asp-for="MemorySize" class="form-control" />
+                <span asp-validation-for="MemorySize" class="text-danger"></span>
+            </div>
+            <div class="col-sm-4 m-3 d-none" id="memorySpeedInput">
+                <label asp-for="MemorySpeed" class="control-label">Memory Speed (MT/s)</label>
+                <input asp-for="MemorySpeed" class="form-control" />
+                <span asp-validation-for="MemorySpeed" class="text-danger"></span>
+            </div>
+            <div class="col-sm-4 m-3 d-none" id="refreshRateInput">
+                <label asp-for="RefreshRate" class="control-label">Refresh Rate (Hz)</label>
+                <input asp-for="RefreshRate" class="form-control" />
+                <span asp-validation-for="RefreshRate" class="text-danger"></span>
+            </div>
+            <div class="col-sm-4 m-3 d-none" id="storageTypeInput">
+                <label asp-for="StorageType" class="control-label">Storage Type</label>
+                <input asp-for="StorageType" class="form-control" />
+                <span asp-validation-for="StorageType" class="text-danger"></span>
+            </div>
+            <div class="col-sm-4 m-3 d-none" id="storageSizeInput">
+                <label asp-for="StorageSize" class="control-label">Storage Size (GB)</label>
+                <input asp-for="StorageSize" class="form-control" />
+                <span asp-validation-for="StorageSize" class="text-danger"></span>
+            </div>
+            <div class="col-sm-4 m-3">
+                <input id="createCase" type="submit" value="Create" class="btn btn-success d-none"
+                       asp-controller="AddItem" asp-action="AddCase"
+                       asp-route-ID="@Model.ID" asp-route-Name="Name" asp-route-Type="Type"
+                       asp-route-Stock="Stock" asp-route-Price="Price" asp-route-Description="Description" 
+                       asp-route-FormFactor="FormFactor" />
+
+                <input id="createCPU" type="submit" value="Create" class="btn btn-success d-none"
+                       asp-controller="AddItem" asp-action="AddCPU"
+                       asp-route-ID="@Model.ID" asp-route-Name="Name" asp-route-Type="Type"
+                       asp-route-Stock="Stock" asp-route-Price="Price" asp-route-Description="Description" 
+                       asp-route-Cores="Cores" asp-route-ClockSpeed="ClockSpeed" asp-route-Socket="Socket" />
+
+                <input id="createGraphicsCard" type="submit" value="Create" class="btn btn-success d-none"
+                       asp-controller="AddItem" asp-action="AddGraphicsCard"
+                       asp-route-ID="@Model.ID" asp-route-Name="Name" asp-route-Type="Type"
+                       asp-route-Stock="Stock" asp-route-Price="Price" asp-route-Description="Description" 
+                       asp-route-VRAM="VRAM" asp-route-CudaCores="CudaCores" />
+
+                <input id="createLaptop" type="submit" value="Create" class="btn btn-success d-none"
+                       asp-controller="AddItem" asp-action="AddLaptop"
+                       asp-route-ID="@Model.ID" asp-route-Name="Name" asp-route-Type="Type"
+                       asp-route-Stock="Stock" asp-route-Price="Price" asp-route-Description="Description" 
+                       asp-route-ScreenSize="ScreenSize" asp-route-RAM="RAM" asp-route-Storage="Storage" />
+
+                <input id="createMemory" type="submit" value="Create" class="btn btn-success d-none"
+                       asp-controller="AddItem" asp-action="AddMemory"
+                       asp-route-ID="@Model.ID" asp-route-Name="Name" asp-route-Type="Type"
+                       asp-route-Stock="Stock" asp-route-Price="Price" asp-route-Description="Description" 
+                       asp-route-MemoryType="MemoryType" asp-route-MemorySize="MemorySize" asp-route-MemorySpeed="MemorySpeed" />
+
+                <input id="createMonitor" type="submit" value="Create" class="btn btn-success d-none"
+                       asp-controller="AddItem" asp-action="AddMonitor"
+                       asp-route-ID="@Model.ID" asp-route-Name="Name" asp-route-Type="Type"
+                       asp-route-Stock="Stock" asp-route-Price="Price" asp-route-Description="Description"
+                       asp-route-ScreenSize="ScreenSize" asp-route-RefreshRate="RefreshRate" />
+
+                <input id="createMotherboard" type="submit" value="Create" class="btn btn-success d-none"
+                       asp-controller="AddItem" asp-action="AddMotherboard"
+                       asp-route-ID="@Model.ID" asp-route-Name="Name" asp-route-Type="Type"
+                       asp-route-Stock="Stock" asp-route-Price="Price" asp-route-Description="Description" 
+                       asp-route-Socket="Socket" asp-route-FormFactor="FormFactor" />
+
+                <input id="createStorage" type="submit" value="Create" class="btn btn-success d-none"
+                       asp-controller="AddItem" asp-action="AddStorage"
+                       asp-route-ID="@Model.ID" asp-route-Name="Name" asp-route-Type="Type"
+                       asp-route-Stock="Stock" asp-route-Price="Price" asp-route-Description="Description"
+                       asp-route-StorageType="StorageType" asp-route-StorageSize="StorageSize" />
+            </div>
+        </form>
+    </div>
+</div>

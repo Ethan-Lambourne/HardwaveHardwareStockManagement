@@ -1,0 +1,51 @@
+﻿@model Motherboard
+@{
+    ViewData["Title"] = "Motherboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>@Html.Raw(Model.Name)</h1>
+<div>
+    <div>
+        <table class="table" id="table">
+            <tbody>
+                <tr>
+                    <th scope="row">ID</th>
+                    <td>@Html.DisplayFor(model => model.ID)</td>
+                </tr>
+                <tr>
+                    <th scope="row">Name</th>
+                    <td>@Html.DisplayFor(model => model.Name)</td>
+                </tr>
+                <tr>
+                    <th scope="row">Type</th>
+                    <td>@Html.DisplayFor(model => model.Type)</td>
+                </tr>
+                <tr>
+                    <th scope="row">Stock</th>
+                    <td>@Html.DisplayFor(model => model.Stock)</td>
+                </tr>
+                <tr>
+                    <th scope="row">Price</th>
+                    <td>£@Html.DisplayFor(model => model.Price)</td>
+                </tr>
+                <tr>
+                    <th scope="row">Description</th>
+                    <td>@Html.DisplayFor(model => model.Description)</td>
+                </tr>
+                <tr>
+                    <th scope="row">Socket</th>
+                    <td>@Html.DisplayFor(model => model.Socket)</td>
+                </tr>
+                <tr>
+                    <th scope="row">Form Factor</th>
+                    <td>@Html.DisplayFor(model => model.FormFactor)</td>
+                </tr>
+            </tbody>
+        </table>
+        <div>
+            <a class="btn btn-danger" asp-action="DeleteItemView" asp-controller="DeleteItem" asp-route-itemId="@Model.ID">Delete</a>
+            <a class="btn btn-warning" asp-action="EditMotherboardView" asp-controller="EditItem" asp-route-motherboardId="@Model.ID">Edit</a>
+        </div>
+    </div>
+</div>

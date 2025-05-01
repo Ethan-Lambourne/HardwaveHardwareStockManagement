@@ -1,0 +1,38 @@
+﻿@using HardwaveStockManagement.ViewModels
+@model DeleteUserViewModel
+@{
+	ViewData["Title"] = "DeleteUser";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="text-center">
+	<table class="table" id="table">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Username</th>
+				<th>Access Level</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			@{
+				foreach (var user in Model.Users)
+				{
+					<tr>
+						<th scope="row">@Html.Raw(user.ID)</th>
+						<td>@Html.Raw(user.Username)</td>
+						@if (user.Admin)
+						{
+							<td>Administrator</td>
+						}
+						else
+						{
+							<td>Customer</td>
+						}
+						<td><a class="btn btn-danger" asp-action="DeleteUser" asp-controller="DeleteUser" asp-route-UserID="@user.ID">Delete</a></td>
+					</tr>
+				}
+			}
+		</tbody>
+	</table>
+</div>

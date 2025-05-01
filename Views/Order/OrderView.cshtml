@@ -1,0 +1,39 @@
+﻿@using HardwaveStockManagement.ViewModels
+@model OrderViewModel
+@{
+	ViewData["Title"] = "Order";
+	Layout = "~/Views/Shared/_CustomerLayout.cshtml";
+}
+
+<h1>Your Current Order</h1>
+
+<div class="text-center">
+	<table class="table" id="table">
+		<thead>
+			<tr>
+				<th>Item</th>
+				<th>Amount</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			@{
+				if (Model.OrderContent.Count > 0) {
+					foreach (KeyValuePair<Guid, int> entry in Model.OrderContent)
+					{
+						<tr>
+							<td>@Html.Raw(Model.GetItemFromID(entry.Key)!.Name)</td>
+							<td>@Html.Raw(entry.Value.ToString())</td>
+							<td><a class="btn btn-danger" asp-action="DeleteItemFromOrder" asp-controller="Order" asp-route-itemId="@entry.Key">Remove</a></td>
+						</tr>
+					}
+				}
+			}
+		</tbody>
+	</table>
+</div>
+<div>
+	@if (Model.OrderContent.Count > 0) {
+		<a class="btn btn-success" asp-action="SubmitOrder" asp-controller="Order">Submit order</a>
+	}
+</div>
